@@ -27,8 +27,8 @@ Konu anlatımını desteklemek için, bulanık mantık süreci ve sınıflandır
 # İletişim
 Eğer herhangi bir sorunuz veya öneriniz olursa, benimle iletişime geçmekten çekinmeyin:
 
-E-posta: semihba16@gmail.com
-LinkedIn: Semih Boğa
+E-posta: [semihba16@gmail.com]
+LinkedIn: [[Semih Boğa](https://www.linkedin.com/in/semih-bo%C4%9Fa-434692198/)]
 
 
 
