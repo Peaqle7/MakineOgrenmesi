@@ -1,7 +1,7 @@
 # Semih Boğa 200757032 - Bulanık Mantık Tabanlı Sınıflandırma Projesi
 Merhaba! Ben Semih Boğa. Bilgisayar Mühendisliği öğrencisiyim . Bu GitHub sayfasında, bulanık mantık ile ilgili çalışmalarımı ve projelerimi paylaşıyorum.
 
-#Proje İçeriği
+# Proje İçeriği
 Bu projede, bulanık mantık tabanlı sınıflandırma hakkında detaylı açıklamalar ve uygulama örnekleri bulacaksınız. Bulanık mantığın temellerinden başlayarak, nasıl çalıştığı, avantajları ve dezavantajları ile ilgili ve daha bir çok bilgiler vereceğim. Ayrıca, C# dilinde bulanık mantık tabanlı sınıflandırma algoritmasını uygulayan kod örneklerini ve veri setleri ile ilgili çalışmaları paylaşacağım.
 
 # İçerik Başlıkları
