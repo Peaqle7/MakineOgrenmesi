@@ -4,58 +4,58 @@ using UnityEngine;
 
 public class ArabaKontrol : MonoBehaviour
 {
-    public float MotorForce, SteerForce, BrakeForce;//araç motor, yön ve fren gücünün tanımlanması
-    public WheelCollider FR_L_Wheel, FR_R_Wheel, RE_L_WHeel, RE_R_Wheel;//tekerlerin tanımlanması
+    public float MotorForce, SteerForce, BrakeForce;//araÃ§ motor, yÃ¶n ve fren gÃ¼cÃ¼nÃ¼n tanÄ±mlanmasÄ±
+    public WheelCollider FR_L_Wheel, FR_R_Wheel, RE_L_WHeel, RE_R_Wheel;//tekerlerin tanÄ±mlanmasÄ±
 
     
-    //bulanık mantık işlemlerinin yapıldığı objelerin tanımlanması
+    //bulanÄ±k mantÄ±k iÅŸlemlerinin yapÄ±ldÄ±ÄŸÄ± objelerin tanÄ±mlanmasÄ±
     public GameObject frontRayCurve;
     public GameObject rightRayCurve;
     public GameObject leftRayCurve;
 
-    private float frontM, rightM, leftM;//çıktı değişkenlerinin tanımlanması
+    private float frontM, rightM, leftM;//Ã§Ä±ktÄ± deÄŸiÅŸkenlerinin tanÄ±mlanmasÄ±
 
-    private string frontA, rightA, leftA;//sözel değerlerin tutulacağı değişkenler
+    private string frontA, rightA, leftA;//sÃ¶zel deÄŸerlerin tutulacaÄŸÄ± deÄŸiÅŸkenler
 
-    public float value = 50;//yön vermek için alınan referans değerin tanımlanması
+    public float value = 50;//yÃ¶n vermek iÃ§in alÄ±nan referans deÄŸerin tanÄ±mlanmasÄ±
 
-    public float hitDist;//sağ ve sol ışınların çizim mesafesi
-    public float frontHitDist;//ön ışının çizim mesafesi
+    public float hitDist;//saÄŸ ve sol Ä±ÅŸÄ±nlarÄ±n Ã§izim mesafesi
+    public float frontHitDist;//Ã¶n Ä±ÅŸÄ±nÄ±n Ã§izim mesafesi
     private float lastTurn = 0.0f;
 
     void Calc(Vector3 dist)
     {
        
 
-        SteerForce = 0.0f;//tekerlerin dönüşü için uygulanan kuvvet(açı)
+        SteerForce = 0.0f;//tekerlerin dÃ¶nÃ¼ÅŸÃ¼ iÃ§in uygulanan kuvvet(aÃ§Ä±)
         
-        float deFuzzyV = 30.0f;//dönüş için verilen temel açı değeri
+        float deFuzzyV = 30.0f;//dÃ¶nÃ¼ÅŸ iÃ§in verilen temel aÃ§Ä± deÄŸeri
         
-        frontRayCurve.GetComponent<BulanıkMantıkKontrol>().x = dist.x;//ön ışının girdi değeri
-        rightRayCurve.GetComponent<BulanıkMantıkKontrol>().x = dist.y;//sağ ışının girdi değeri
-        leftRayCurve.GetComponent<BulanıkMantıkKontrol>().x = dist.z;//sol ışının girdi değeri
+        frontRayCurve.GetComponent<BulanÄ±kMantÄ±kKontrol>().x = dist.x;//Ã¶n Ä±ÅŸÄ±nÄ±n girdi deÄŸeri
+        rightRayCurve.GetComponent<BulanÄ±kMantÄ±kKontrol>().x = dist.y;//saÄŸ Ä±ÅŸÄ±nÄ±n girdi deÄŸeri
+        leftRayCurve.GetComponent<BulanÄ±kMantÄ±kKontrol>().x = dist.z;//sol Ä±ÅŸÄ±nÄ±n girdi deÄŸeri
 
-        this.frontM = frontRayCurve.GetComponent<BulanıkMantıkKontrol>().fuzzyValue;//ön ışının sayısal çıktı değeri
-        this.rightM = rightRayCurve.GetComponent<BulanıkMantıkKontrol>().fuzzyValue;//sağ ışının sayısal çıktı değeri
-        this.leftM = leftRayCurve.GetComponent<BulanıkMantıkKontrol>().fuzzyValue;//sol ışının sayısal çıktı değeri
+        this.frontM = frontRayCurve.GetComponent<BulanÄ±kMantÄ±kKontrol>().fuzzyValue;//Ã¶n Ä±ÅŸÄ±nÄ±n sayÄ±sal Ã§Ä±ktÄ± deÄŸeri
+        this.rightM = rightRayCurve.GetComponent<BulanÄ±kMantÄ±kKontrol>().fuzzyValue;//saÄŸ Ä±ÅŸÄ±nÄ±n sayÄ±sal Ã§Ä±ktÄ± deÄŸeri
+        this.leftM = leftRayCurve.GetComponent<BulanÄ±kMantÄ±kKontrol>().fuzzyValue;//sol Ä±ÅŸÄ±nÄ±n sayÄ±sal Ã§Ä±ktÄ± deÄŸeri
 
-        //ışın çıktılarının sözel karşılığı (close-midClose-middle-midFar-far)
-        this.frontA = frontRayCurve.GetComponent<BulanıkMantıkKontrol>().activatedPart;
-        this.rightA = rightRayCurve.GetComponent<BulanıkMantıkKontrol>().activatedPart;
-        this.leftA = leftRayCurve.GetComponent<BulanıkMantıkKontrol>().activatedPart;
+        //Ä±ÅŸÄ±n Ã§Ä±ktÄ±larÄ±nÄ±n sÃ¶zel karÅŸÄ±lÄ±ÄŸÄ± (close-midClose-middle-midFar-far)
+        this.frontA = frontRayCurve.GetComponent<BulanÄ±kMantÄ±kKontrol>().activatedPart;
+        this.rightA = rightRayCurve.GetComponent<BulanÄ±kMantÄ±kKontrol>().activatedPart;
+        this.leftA = leftRayCurve.GetComponent<BulanÄ±kMantÄ±kKontrol>().activatedPart;
 
-        //// aracın tekerlerine verdiğimiz güç 100 ü geçerse sıfırla
+        //// aracÄ±n tekerlerine verdiÄŸimiz gÃ¼Ã§ 100 Ã¼ geÃ§erse sÄ±fÄ±rla
         if (RE_L_WHeel.rpm > 100)
             RE_L_WHeel.motorTorque = 0;
 
         if (RE_R_Wheel.rpm > 100)
             RE_R_Wheel.motorTorque = 0;
 
-        value = Mathf.Min(frontM, Mathf.Min(rightM, leftM));//bulanık mantığa göre kesişen noktaların minimum değeri alınıyor
+        value = Mathf.Min(frontM, Mathf.Min(rightM, leftM));//bulanÄ±k mantÄ±ÄŸa gÃ¶re kesiÅŸen noktalarÄ±n minimum deÄŸeri alÄ±nÄ±yor
 
         print("Front ray: " + frontA + " Right ray: " + rightA + " Left ray: " + leftA);
 
-        // bulanık mantık kuralları, araç sağ sol ve ön ışınlardan gelen değerlere göre aksiyon alıyor
+        // bulanÄ±k mantÄ±k kurallarÄ±, araÃ§ saÄŸ sol ve Ã¶n Ä±ÅŸÄ±nlardan gelen deÄŸerlere gÃ¶re aksiyon alÄ±yor
         if (frontA == "far" || frontA == "midFar")
         {
             if (rightA == "far" || rightA == "midFar")
@@ -240,16 +240,16 @@ public class ArabaKontrol : MonoBehaviour
 
     }
 
-    Vector3 DetectColision()//ışınların unity içerisinde oluşturulması ve mesafe ölçülmesi
+    Vector3 DetectColision()//Ä±ÅŸÄ±nlarÄ±n unity iÃ§erisinde oluÅŸturulmasÄ± ve mesafe Ã¶lÃ§Ã¼lmesi
     {
         int layerMask = 1 << 8;
        
         layerMask = ~layerMask;
-        Vector3 dist = new Vector3(10000.0f, 10000.0f, 10000.0f);//x:ön y:sağ z:sol
+        Vector3 dist = new Vector3(10000.0f, 10000.0f, 10000.0f);//x:Ã¶n y:saÄŸ z:sol
         RaycastHit hit;
-        Vector3 rayPos = new Vector3(transform.position.x, transform.position.y + 1.0f, transform.position.z);//ışınların 0 yani başlangıç noktası
+        Vector3 rayPos = new Vector3(transform.position.x, transform.position.y + 1.0f, transform.position.z);//Ä±ÅŸÄ±nlarÄ±n 0 yani baÅŸlangÄ±Ã§ noktasÄ±
 
-        //ışınların oluşturulması ve ölçtükleri mesafeyi kaydetmesi
+        //Ä±ÅŸÄ±nlarÄ±n oluÅŸturulmasÄ± ve Ã¶lÃ§tÃ¼kleri mesafeyi kaydetmesi
         if (Physics.Raycast(rayPos, transform.TransformDirection(Vector3.forward), out hit, frontHitDist, layerMask))
         {
             Debug.DrawRay(rayPos, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
@@ -279,7 +279,7 @@ public class ArabaKontrol : MonoBehaviour
         {
             Debug.DrawRay(rayPos, transform.TransformDirection(new Vector3(-1.0f, 0.0f, 2f)) * 1000, Color.white);
         }
-        return dist;//ölçülen ön,sağ ve sol ışınların ölçtüğü uzaklıkların geri döndürülmesi
+        return dist;//Ã¶lÃ§Ã¼len Ã¶n,saÄŸ ve sol Ä±ÅŸÄ±nlarÄ±n Ã¶lÃ§tÃ¼ÄŸÃ¼ uzaklÄ±klarÄ±n geri dÃ¶ndÃ¼rÃ¼lmesi
     }
 
 
@@ -287,13 +287,13 @@ public class ArabaKontrol : MonoBehaviour
     {
         lastTurn = 0.0f;
     }
-    void Update()//her frame de çalıştırılarak oyun döngüsünün oluşturulması
+    void Update()//her frame de Ã§alÄ±ÅŸtÄ±rÄ±larak oyun dÃ¶ngÃ¼sÃ¼nÃ¼n oluÅŸturulmasÄ±
     {
-        Vector3 dist = DetectColision();//ışınların oluşturulması ve ölçülen uzakların değişkene atanması
-        Calc(dist);//ölçülen uzaklıkların Calc() methodu ile bulanık mantık sınıflandırması yapılarak arabanın engellere çarpmadan açı ile sağ sol yapmasını sağlar
+        Vector3 dist = DetectColision();//Ä±ÅŸÄ±nlarÄ±n oluÅŸturulmasÄ± ve Ã¶lÃ§Ã¼len uzaklarÄ±n deÄŸiÅŸkene atanmasÄ±
+        Calc(dist);//Ã¶lÃ§Ã¼len uzaklÄ±klarÄ±n Calc() methodu ile bulanÄ±k mantÄ±k sÄ±nÄ±flandÄ±rmasÄ± yapÄ±larak arabanÄ±n engellere Ã§arpmadan aÃ§Ä± ile saÄŸ sol yapmasÄ±nÄ± saÄŸlar
        
 
-        // araç hızı tanımlamaları
+        // araÃ§ hÄ±zÄ± tanÄ±mlamalarÄ±
         float v = MotorForce;
         float h = SteerForce;
         RE_R_Wheel.motorTorque = v;
